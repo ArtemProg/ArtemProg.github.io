@@ -9,6 +9,9 @@ export default class GameScene extends Phaser.Scene {
     }
 
     init() { 
+
+        // https://newdocs.phaser.io/docs/3.80.0/Phaser.Scale.ScaleManager
+
         this.my_orientationchange();
 
         this.scale.on('orientationchange', function(orientation) {
@@ -23,11 +26,9 @@ export default class GameScene extends Phaser.Scene {
 
         let text = `orientation: ${this.scale.orientation};\nq: ${aspectRatio}`;
 
-        // @ts-ignore
-        if (this.scale.orientation == Phaser.Scale.LANDSCAPE) {
+        if (this.scale.isLandscape) {
             text = `orientation --> LANDSCAPE;\nq: ${aspectRatio}`;
-        // @ts-ignore
-        } else if (this.scale.orientation == Phaser.Scale.PORTRAIT) {
+        } else if (this.scale.isPortrait) {
             text = `orientation --> PORTRAIT;\nq: ${aspectRatio}`;
         }
 
