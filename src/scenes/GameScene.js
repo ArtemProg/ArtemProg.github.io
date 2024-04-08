@@ -21,14 +21,14 @@ export default class GameScene extends Phaser.Scene {
 
         const aspectRatio = this.scale.parentSize.aspectRatio;
 
-        let text = `orientation: ${this.scale.orientation}; q: ${aspectRatio}`;
+        let text = `orientation: ${this.scale.orientation};\nq: ${aspectRatio}`;
 
         // @ts-ignore
         if (this.scale.orientation == Phaser.Scale.LANDSCAPE) {
-            text = `orientation --> LANDSCAPE ; q: ${aspectRatio}`;
+            text = `orientation --> LANDSCAPE;\nq: ${aspectRatio}`;
         // @ts-ignore
         } else if (this.scale.orientation == Phaser.Scale.PORTRAIT) {
-            text = `orientation --> PORTRAIT ; q: ${aspectRatio}`;
+            text = `orientation --> PORTRAIT;\nq: ${aspectRatio}`;
         }
 
         this.labelDebug = this.make.text({
@@ -37,7 +37,7 @@ export default class GameScene extends Phaser.Scene {
             //origin: {x: 0.5 , y: -0.5},
             text: text,
             style: {
-                font: 'bold 72px Arial',
+                font: 'bold 54px Arial',
                 color: '#444444',
             }
         });
