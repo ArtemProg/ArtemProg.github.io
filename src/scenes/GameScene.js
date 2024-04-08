@@ -9,12 +9,33 @@ export default class GameScene extends Phaser.Scene {
     }
 
     init() { 
+        this.my_orientationchange();
+
+        this.scale.on('orientationchange', function(orientation) {
+            this.my_orientationchange();
+        });
+
+    }
+
+    my_orientationchange() {
+
+        const aspectRatio = this.scale.parentSize.aspectRatio;
+
+        let text = `orientation: ${this.scale.orientation}; q: ${aspectRatio}`;
+
+        // @ts-ignore
+        if (this.scale.orientation == Phaser.Scale.LANDSCAPE) {
+            text = `orientation --> LANDSCAPE ; q: ${aspectRatio}`;
+        // @ts-ignore
+        } else if (this.scale.orientation == Phaser.Scale.PORTRAIT) {
+            text = `orientation --> PORTRAIT ; q: ${aspectRatio}`;
+        }
 
         this.labelDebug = this.make.text({
             x: 200,
             y: 500,
             //origin: {x: 0.5 , y: -0.5},
-            text: String(this.scale.orientation),
+            text: text,
             style: {
                 font: 'bold 72px Arial',
                 color: '#444444',
