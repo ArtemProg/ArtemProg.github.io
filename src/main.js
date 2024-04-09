@@ -12,8 +12,8 @@ export default new Phaser.Game({
     // width: 1280,
     // height: 1024,
 
-    width: 1020,
-    height: 2208,
+    //width: 1020,
+    //height: 2208,
 
     scene: [BootScene, PreloadScene, StartScene, GameScene],
     scale: {

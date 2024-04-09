@@ -30,6 +30,10 @@ export default class GameScene extends Phaser.Scene {
             text = `orientation --> LANDSCAPE;\nq: ${aspectRatio}`;
         } else if (this.scale.isPortrait) {
             text = `orientation --> PORTRAIT;\nq: ${aspectRatio}`;
+        } else if (this.scale.isGameLandscape) {
+            text = `orientation --> isGameLandscape;\nq: ${aspectRatio}`;
+        } else if (this.scale.isGamePortrait) {
+            text = `orientation --> isGamePortrait;\nq: ${aspectRatio}`;
         }
 
         this.labelDebug = this.make.text({
