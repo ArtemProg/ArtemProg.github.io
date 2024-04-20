@@ -1,0 +1,296 @@
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+.game-wrapper {
+
+    position: fixed; /* Stay in place */
+    overflow: hidden; /* Enable scroll if needed */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0; /* Optional: Add some padding around the content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better depth */
+    
+    unicode-bidi: isolate;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    aspect-ratio: auto 800 / 600;
+}
+
+#phaser-game {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(209, 144, 144); /* Black with opacity */
+    z-index: -1; /* Sit on top */
+}
+canvas {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* Styling the info block */
+.info-block-wrap {
+    display: block;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.info-block {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0 2px;
+    color: #fff;
+
+    max-width: 1200px; /* Optional: Limit the max width */
+    margin: 0 auto; /* Centering the wrapper if a max-width is set */
+}
+
+.indicator {
+    /* font-size: 16px; */
+    
+}
+
+.button-panel-wrap {
+    display: block;
+    width: 100%;
+}
+
+.button-panel {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    /* margin: 5px auto; */
+    /* padding: 10px 0 2px; */
+
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-radius: 12px;
+
+    color: #fff;
+
+    max-width: 300px; /* Optional: Limit the max width */
+    margin: 10px auto; /* Centering the wrapper if a max-width is set */
+}
+
+/* Styling the button panel */
+.button-panel-1 {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    /* margin: 5px auto; */
+    max-width: 300px;
+    
+}
+
+.game-button-wrap {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.game-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+}
+
+.game-button img {
+    width: 50px;
+    height: auto;
+}
+
+.game-button div {
+    padding: 0;
+    margin-top: 2px;
+    /* font-size: 14px; */
+    color: #fff;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    z-index: 1000; /* Sit on top */
+}
+
+.modal-content {
+    position: absolute;
+    top: 0;
+    left: 20%; /* 20% left margin */
+    right: 20%; /* 20% right margin */
+    bottom: 0;
+    background-color: rgba(33, 33, 33, 1); /* Light black with high opacity */
+    color: gray;
+    padding: 20px;
+    width: auto; /* Automatically adjust the width based on the margins */
+    height: 100%; /* Stretch to full height */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    overflow-y: auto; /* Allows scrolling inside the modal if content overflows */
+    border: none; /* Removing the border */
+    z-index: 1001;
+}
+
+.close-button {
+    color: #ccc; /* Lighter color for better visibility on dark background */
+    position: absolute; /* Positioning it relative to its nearest positioned ancestor */
+    right: 10px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff; /* White color on hover/focus for better visibility */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Animation for info block moving up */
+.move-up {
+    position: relative;
+    transition: transform 1s ease-in-out; /* Smooth transition over 1 second */
+    transform: translateY(-100px);
+}
+
+/* Animation for hiding button panel down */
+.hide-down {
+    position: relative;
+    transition: transform 1s ease-in-out; /* Smooth transition over 1 second */
+    transform: translateY(200px);
+}
+
+.button-panel-hidden {
+    visibility: hidden;      
+}
+
+.button-panel-visible {
+    visibility: visible;
+}
+
+
+
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .indicator {
+        /* font-size: 16px; */
+    }
+
+    .game-button img {
+        width: 40px;
+    }
+
+    .game-button div {
+        /* font-size: 16px; */
+    }
+}
+
+
+/* Orientation-specific adjustments */
+@media (orientation: portrait) {
+    .info-block, .button-panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    
+}
+
+@media (orientation: landscape) {
+    .info-block, .button-panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .button-panel {
+        padding: 10px 0;
+    }
+
+    .game-button {
+        /* margin: 0 10px; Adequate spacing in landscape */
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        left: 20%; /* 20% margin for mobile devices */
+        right: 20%; /* Adjusted margin for mobile */
+    }
+}
+
+/* Adjustments for tablets or intermediate screen sizes, if needed */
+@media (min-width: 601px) and (max-width: 800px) {
+    .modal-content {
+        left: 20%; /* Maintaining a 20% margin from the edges */
+        right: 20%;
+    }
+}
+
+.text {
+    font-size: 14px;
+}
+
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+    min-zoom: 1.0;
+    max-zoom: 1.0;
+  }

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bezier Curve Animation</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+    }
+
+    canvas {
+        display: block;
+    }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const canvasWidth = canvas.width = window.innerWidth;
+    const canvasHeight = canvas.height = window.innerHeight;
+
+    // Define Bezier curve control points
+    const controlPoints = [
+        { x: 100, y: 200 },
+        { x: 300, y: 50 },
+        { x: 500, y: 200 },
+        { x: 700, y: 150 }
+    ];
+
+    // Animation parameters
+    const duration = 5000; // Animation duration in milliseconds
+    const startTime = Date.now();
+
+    // Main animation loop
+    function animate() {
+        const currentTime = Date.now();
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1); // Clamp progress to [0, 1]
+        
+        // Clear canvas
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        // Draw Bezier curve
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        ctx.moveTo(controlPoints[0].x, controlPoints[0].y);
+        for (let i = 1; i < controlPoints.length; i += 3) {
+            ctx.bezierCurveTo(
+                controlPoints[i].x, controlPoints[i].y,
+                controlPoints[i + 1].x, controlPoints[i + 1].y,
+                controlPoints[i + 2].x, controlPoints[i + 2].y
+            );
+        }
+        ctx.stroke();
+
+        // Calculate position along the Bezier curve
+        const position = getBezierPoint(progress, controlPoints);
+
+        // Calculate the normal vector at the current point
+        const normal = getNormal(progress, controlPoints);
+
+        // Define the offset distance from the curve
+        const offsetDistance = 0.3;
+
+        // Calculate the position with offset
+        const offsetX = position.x + normal.x * offsetDistance;
+        const offsetY = position.y + normal.y * offsetDistance;
+
+        // Draw moving circle
+        const circleRadius = 10;
+        ctx.fillStyle = 'red';
+        ctx.beginPath();
+
+        ctx.arc(offsetX, offsetY, circleRadius, 0, Math.PI * 2);
+        //ctx.arc(position.x, position.y, circleRadius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Continue animation if not finished
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    // Function to get a point along the Bezier curve
+    function getBezierPoint(t, controlPoints) {
+        const n = controlPoints.length - 1;
+        let x = 0;
+        let y = 0;
+        for (let i = 0; i <= n; i++) {
+            const coefficient = getBinomialCoefficient(n, i) * Math.pow(1 - t, n - i) * Math.pow(t, i);
+            x += controlPoints[i].x * coefficient;
+            y += controlPoints[i].y * coefficient;
+        }
+        return { x, y };
+    }
+
+    // Function to calculate the normal vector at a point on the curve
+function getNormal(t, controlPoints) {
+    // Get the tangent vector at the given point
+    const tangent = getTangent(t, controlPoints);
+
+    // Rotate the tangent vector by 90 degrees to get the normal vector
+    const normal = { x: -tangent.y, y: tangent.x };
+
+    return normal;
+}
+
+
+    // Function to calculate the tangent vector at a point on the curve
+    function getTangent(t, controlPoints) {
+        const n = controlPoints.length - 1;
+        let x = 0;
+        let y = 0;
+        
+
+        const bezierTangent = (a, b, c, d) => {
+            let C1 = ( d - (3.0 * c) + (3.0 * b) - a );
+            let C2 = ( (3.0 * c) - (6.0 * b) + (3.0 * a) );
+            let C3 = ( (3.0 * b) - (3.0 * a) );
+            let C4 = ( a );
+
+            return ( ( 3.0 * C1 * t* t ) + ( 2.0 * C2 * t ) + C3 );
+        };
+
+        x = bezierTangent(controlPoints[0].x, controlPoints[1].x, controlPoints[2].x, controlPoints[3].x)
+        y = bezierTangent(controlPoints[0].y, controlPoints[1].y, controlPoints[2].y, controlPoints[3].y)
+
+        // for (let i = 0; i < n; i++) {
+        //     const coefficient = n * (controlPoints[i + 1].x - controlPoints[i].x);
+        //     x += coefficient * Math.pow(1 - t, n - 1) * Math.pow(t, i);
+        //     y += coefficient * Math.pow(1 - t, n - 1) * Math.pow(t, i);
+        // }
+        return { x, y };
+        
+    }
+
+    // Function to calculate the binomial coefficient
+    function getBinomialCoefficient(n, k) {
+        let result = 1;
+        for (let i = 1; i <= k; i++) {
+            result *= (n - i + 1) / i;
+        }
+        return result;
+    }
+
+   
+
+    // Start animation
+    animate();
+</script>
+</body>
+</html>

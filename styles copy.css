@@ -1,0 +1,195 @@
+/* Basic Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px; /* Optional: Limit the max width */
+    margin: 0 auto; /* Centering the wrapper if a max-width is set */
+    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better depth */
+    background-color: #fff; /* Optional: Set a background color */
+}
+
+/* Styling the info block */
+.info-block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.indicator {
+    font-size: 16px;
+}
+
+/* Styling the button panel */
+.button-panel {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    margin: 10px auto;
+}
+
+.game-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.game-button:hover {
+    transform: translateY(-2px);
+}
+
+.game-button img {
+    width: 50px;
+    height: auto;
+}
+
+.game-button div {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .indicator {
+        font-size: 14px;
+    }
+
+    .game-button img {
+        width: 40px;
+    }
+
+    .game-button div {
+        font-size: 12px;
+    }
+}
+
+/* Orientation-specific adjustments */
+@media (orientation: portrait) {
+    .info-block, .button-panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .button-panel {
+        padding: 10px;
+    }
+
+    .game-button {
+        margin: 0 5px; /* Reduced margin for compact appearance in portrait */
+    }
+}
+
+@media (orientation: landscape) {
+    .info-block, .button-panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .button-panel {
+        padding: 10px 0;
+    }
+
+    .game-button {
+        margin: 0 10px; /* Adequate spacing in landscape */
+    }
+}
+
+
+
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+    z-index: 1000; /* Sit on top */
+}
+
+.modal-content {
+    position: absolute;
+    top: 0;
+    left: 20%; /* 20% left margin */
+    right: 20%; /* 20% right margin */
+    bottom: 0;
+    background-color: rgba(33, 33, 33, 0.95); /* Light black with high opacity */
+    padding: 20px;
+    width: auto; /* Automatically adjust the width based on the margins */
+    height: 100%; /* Stretch to full height */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    overflow-y: auto; /* Allows scrolling inside the modal if content overflows */
+    border: none; /* Removing the border */
+    z-index: 1001;
+}
+
+.close-button {
+    color: #ccc; /* Lighter color for better visibility on dark background */
+    position: absolute; /* Positioning it relative to its nearest positioned ancestor */
+    right: 10px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #fff; /* White color on hover/focus for better visibility */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        left: 20%; /* 20% margin for mobile devices */
+        right: 20%; /* Adjusted margin for mobile */
+    }
+}
+
+/* Adjustments for tablets or intermediate screen sizes, if needed */
+@media (min-width: 601px) and (max-width: 800px) {
+    .modal-content {
+        left: 20%; /* Maintaining a 20% margin from the edges */
+        right: 20%;
+    }
+}
+

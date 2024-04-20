@@ -2,34 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solitaire</title>
-    <!-- <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script> -->
-    
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-        canvas {
-            width: 100%;
-            height: 100%;
-        }
-        @font-face {
-            font-family: 'CurseCasual';
-            src: url("assets/fonts/CurseCasual.ttf");
-        }
-        .fontPreload {
-            font-family:'CurseCasual';
-            position: absolute;
-            left: -100px;
-        }
-    </style>
-    
-    <script  src="./phaser.js"></script>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, "> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, min-scale=1, max-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, height=device-height, target-densitydpi=device-dpi, shrink-to-fit=no, interactive-widget=overlays-content">
+    <title>Card Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
 </head>
 <body>
-    <div id="phaser-example"></div>
-    <script type="module" src="src/main.js"></script>
+
+    <div class="game-wrapper">
+        <div class="info-block-wrap">
+            <div class="info-block">
+                <div class="indicator"><label class="text">Points: <span id="points">0</span></label></div>
+                <div class="indicator"><label class="text">Time: <span id="time">00:00</span></label></div>
+                <div class="indicator"><label class="text">Moves: <span id="moves">0</span></label></div>
+            </div>
+        </div>
+        
+        <div id="phaser-game">
+            <!-- <canvas id="canvas"></canvas> -->
+        </div>
+
+        <div class="button-panel-wrap">
+            <div class="button-panel" class="button-panel-visible">
+                <div class="game-button-wrap">
+                    <button class="game-button" id="openModal">
+                        <img src="src/img/button.png" alt="Icon 1">
+                        <div><label class="text">Settings</label></div>
+                    </button>
+                </div>
+                <div class="game-button-wrap">
+                    <button class="game-button" id="openModal_1">
+                        <img src="src/img/button.png" alt="Icon 1">
+                        <div><label class="text">Play</label></div>
+                    </button>
+                </div>
+                <div class="game-button-wrap">
+                    <button class="game-button" id="openModal_2">
+                        <img src="src/img/button.png" alt="Icon 1">
+                        <div><label class="text">Undo</label></div>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p>Some content in the modal.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

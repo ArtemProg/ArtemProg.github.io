@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phaser Game Interface</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: window.innerWidth,
+            height: window.innerHeight,
+            scene: {
+                preload: preload,
+                create: create
+            }
+        };
+
+        const game = new Phaser.Game(config);
+
+        function preload() {
+            // Preload any assets here if needed
+        }
+
+        function create() {
+            // Draw score panel at the top
+            const scoreText = this.add.text(20, 20, 'Score: 100', { fontFamily: 'Arial', fontSize: '20px', fill: '#ffffff' });
+
+            // Example buttons
+            const buttons = [
+                { text: 'Button 1', x: 20, y: window.innerHeight - 70 },
+                { text: 'Button 2', x: 150, y: window.innerHeight - 70 },
+                { text: 'Button 3', x: 280, y: window.innerHeight - 70 },
+                { text: 'Button 4', x: 410, y: window.innerHeight - 70 }
+            ];
+
+            // Draw button panel at the bottom
+            buttons.forEach(button => {
+                const buttonGraphics = this.add.graphics();
+                buttonGraphics.fillStyle(0xcccccc, 1);
+                buttonGraphics.fillRect(button.x, button.y, 120, 50);
+
+                const buttonText = this.add.text(button.x + 10, button.y + 15, button.text, { fontFamily: 'Arial', fontSize: '16px', fill: '#333333' });
+            });
+        }
+    </script>
+</body>
+</html>
