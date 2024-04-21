@@ -51,6 +51,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
+    document.addEventListener('touchstart', function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault(); // Block multitouch gestures like pinch-to-zoom
+        }
+    }, { passive: false });
+    
+    document.addEventListener('wheel', function(event) {
+        if (event.ctrlKey) {
+            event.preventDefault(); // Block CTRL+wheel zoom
+        }
+    }, { passive: false });
+
     // const canvas = document.getElementById('canvas');
     // const context = canvas.getContext('2d');
     // const centerX = canvas.width / 2;
