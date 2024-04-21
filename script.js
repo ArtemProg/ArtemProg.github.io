@@ -42,12 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
         touch++;
 
         points.textContent = touch;
-
-        //if(event.touches.length > 1){
-            //the event is multi-touch
-            //you can then prevent the behavior
-            event.preventDefault()
-        //}
     }
 
 
@@ -62,6 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Block CTRL+wheel zoom
         }
     }, { passive: false });
+
+    document.addEventListener('gesturestart', function(event) {
+        event.preventDefault();  // Disable gesture events like pinch-to-zoom
+    });
 
     // const canvas = document.getElementById('canvas');
     // const context = canvas.getContext('2d');
