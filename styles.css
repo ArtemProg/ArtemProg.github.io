@@ -14,7 +14,7 @@ body, html {
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    touch-action: manipulation;
+    touch-action: none;
 }
 
 .game-wrapper {
