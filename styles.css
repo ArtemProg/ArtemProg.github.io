@@ -29,12 +29,12 @@ body, html {
     height: 100%;
     margin: 0;
     padding: 0; /* Optional: Add some padding around the content */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better depth */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Optional: Add some shadow for better depth */
     
-    unicode-bidi: isolate;
+    /* unicode-bidi: isolate;
     overflow-clip-margin: content-box;
     overflow: clip;
-    aspect-ratio: auto 800 / 600;
+    aspect-ratio: auto 800 / 600; */
 }
 
 #phaser-game {
