@@ -6,57 +6,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, min-scale=1, max-scale=1, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, height=device-height, target-densitydpi=device-dpi, shrink-to-fit=no, interactive-widget=overlays-content">
     <title>Card Game</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script> -->
 </head>
 <body>
 
     <div class="game-wrapper">
+        
+        <div id="phaser-game"></div>
+
         <div class="info-block-wrap">
             <div class="info-block">
-                <div class="indicator"><label class="text">Points: <span id="points">0</span></label></div>
-                <div class="indicator"><label class="text">Time: <span id="time">00:00</span></label></div>
-                <div class="indicator"><label class="text">Moves: <span id="moves">0</span></label></div>
+                <ul class="info-list">
+                    <li>
+                        <div class="info-header">Score &nbsp;<span id="info-score">0</span></div>
+                    </li>
+                    <li>
+                        <div class="info-header"><span id="info-time">00:00</span></div>
+                    </li>
+                    <li>
+                        <div class="info-header">Moves &nbsp;<span id="info-moves">0</span></div>
+                    </li>
+                </ul>
             </div>
         </div>
-        
         
 
         <div class="button-panel-wrap">
-            <div class="button-panel" class="button-panel-visible">
-                <div class="game-button-wrap">
-                    <button class="game-button" id="openModal">
-                        <img src="src/img/button.png" alt="Icon 1">
-                        <div><label class="text">Settings</label></div>
-                    </button>
-                </div>
-                <div class="game-button-wrap">
-                    <button class="game-button" id="openModal_1">
-                        <img src="src/img/button.png" alt="Icon 1">
-                        <div><label class="text">Play</label></div>
-                    </button>
-                </div>
-                <div class="game-button-wrap">
-                    <button class="game-button" id="openModal_2">
-                        <img src="src/img/button.png" alt="Icon 1">
-                        <div><label class="text">Undo</label></div>
-                    </button>
-                </div>
-                
-            </div>
+
+            <ul class="button-panel">
+                <li>
+                    <div class="game-button-wrap">
+                        <button class="game-button" id="btn-setting">
+                            <img src="src/img/button.png" alt="Icon 1">
+                            <div>Settings</div>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="game-button-wrap">
+                        <button class="game-button" id="btn-play">
+                            <img src="src/img/button.png" alt="Icon 2">
+                            <div>Play</div>
+                        </button>
+                    </div>
+                </li>
+                <li>
+                    <div class="game-button-wrap">
+                        <button class="game-button" id="btn-undo">
+                            <img src="src/img/button.png" alt="Icon 3">
+                            <div>Undo</div>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
         </div>
-
         
-
     </div>
 
     <!-- Modal Structure -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <p>Some content in the modal.</p>
+    <div class="modal-play" id="modal-play">
+        <div class="modal-play-content">
+            <!-- <span class="close-button">&times;</span>
+            <p>Some content in the modal.</p> -->
+
+            <div class="header">
+                <img src="" alt="logo">
+            </div>
+            <div class="main">
+                <ul class="play-button">
+                    <li>
+                        <button>
+                            <img src="icons/new-game-icon.png" alt="icon">
+                            <div>New Game</div>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <img src="icons/new-game-icon.png" alt="icon">
+                            <div>Replay</div>
+                        </button>
+                    </li>
+                    <li>
+                        <button>
+                            <img src="icons/new-game-icon.png" alt="icon">
+                            <div>Close</div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer"></div>
         </div>
     </div>
 
+    <script src="phaser.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

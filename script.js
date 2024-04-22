@@ -1,25 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    let touch = 0;
-    const points = document.getElementById('points');
     
-    const modal = document.getElementById('modal');
-    const openModalButton = document.getElementById('openModal');
+    const elInfoBlock = document.getElementsByClassName('info-block')?.[0];
+    const elInfoScore = document.getElementById('info-score');
+    const elInfoTime = document.getElementById('info-time');
+    const elInfoMoves = document.getElementById('info-moves');
+
+    const elBtnUndo = document.getElementById('btn-undo');
+
+    
+    const modalPlay = document.getElementById('modal-play');
+    const openModalPlay = document.getElementById('btn-play');
+
+    const openModalButton = document.getElementById('btn-setting');
     const closeModalButton = document.querySelector('.close-button');
     const infoBlock = document.querySelector('.info-block');
     const buttonPanel = document.querySelector('.button-panel');
 
     // Function to open the modal
-    openModalButton.onclick = function() {
-        modal.style.display = 'block';
-        //infoBlock.classList.add('move-up');
+    openModalPlay.onclick = function() {
+        modalPlay.style.display = 'block';
+        
 
-        buttonPanel.classList.add('button-panel-hidden');
+        
     };
 
     // Function to close the modal
     closeModalButton.onclick = function() {
-        modal.style.display = 'none';
+        modalPlay.style.display = 'none';
         //infoBlock.classList.remove('move-up');
 
         buttonPanel.classList.remove('button-panel-hidden');
@@ -28,21 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Click outside the modal content to also close the modal
     window.onclick = function(event) {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            modalPlay.style.display = 'none';
             //infoBlock.classList.remove('move-up');
 
             buttonPanel.classList.remove('button-panel-hidden');
         }
     };
 
-    window.addEventListener("touchstart", touchHandler, false);
 
-    function touchHandler(event){
-        
-        touch++;
 
-        points.textContent = touch;
-    }
 
 
     document.addEventListener('touchstart', function(event) {
@@ -56,24 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Block CTRL+wheel zoom
         }
     }, { passive: false });
-
+    
     document.addEventListener('gesturestart', function(event) {
         event.preventDefault();  // Disable gesture events like pinch-to-zoom
     });
-
-    // const canvas = document.getElementById('canvas');
-    // const context = canvas.getContext('2d');
-    // const centerX = canvas.width / 2;
-    // const centerY = canvas.height / 2;
-    // const radius = 70;
-
-    // context.beginPath();
-    // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-    // context.fillStyle = 'green';
-    // context.fill();
-    // context.lineWidth = 5;
-    // context.strokeStyle = '#003300';
-    // context.stroke();
 
 
 

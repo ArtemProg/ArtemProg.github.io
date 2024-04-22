@@ -1,8 +1,18 @@
+
+:root {
+    --transparen-panel-color:  rgba(0, 0, 0, 0.5);
+}
+
 /* Basic Resets */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
 }
 
 body, html {
@@ -14,34 +24,24 @@ body, html {
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    /* touch-action: none; */
+    touch-action: none;
 }
 
 .game-wrapper {
-
     position: fixed; /* Stay in place */
     overflow: hidden; /* Enable scroll if needed */
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 0; /* Optional: Add some padding around the content */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Optional: Add some shadow for better depth */
+    padding: 0;
     
-    /* unicode-bidi: isolate;
-    overflow-clip-margin: content-box;
-    overflow: clip;
-    aspect-ratio: auto 800 / 600; */
 }
 
 #phaser-game {
     display: block;
-    width: 100%;
-    height: 100%;
-
     position: fixed; /* Stay in place */
     left: 0;
     top: 0;
@@ -49,93 +49,141 @@ body, html {
     height: 100%; /* Full height */
     overflow: hidden; /* Enable scroll if needed */
     background-color: rgb(209, 144, 144); /* Black with opacity */
-    /* z-index: -1; Sit on top */
 }
+
 canvas {
     width: 100%;
     height: 100%;
 }
 
-
-
-/* Styling the info block */
 .info-block-wrap {
     display: block;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--transparen-panel-color);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    
+    z-index: 10;
+    
 }
 
 .info-block {
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0 2px;
-    color: #fff;
-
-    max-width: 1200px; /* Optional: Limit the max width */
-    margin: 0 auto; /* Centering the wrapper if a max-width is set */
+    max-width: 1024px;
+    margin: 0 auto; 
 }
 
-.indicator {
-    /* font-size: 16px; */
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;  /* Arranges the list items horizontally */
+    color: #fff;
     
 }
+
+.info-list li {
+    flex: 1;  /* Distributes space equally among items */ 
+    display: flex;
+    align-items: center; /* Align content vertically within each item */
+}
+
+.info-list li:last-child {
+    border-right: none; /* Removes border from the last item for a cleaner look */
+}
+
+.info-header {
+    width: 100%;
+    padding: 0 3px 0 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures space between the label and the number */
+}
+
+/* Specific alignment adjustments */
+.info-list li:nth-child(1) .info-header {
+    justify-content: flex-start; /* Aligns text to the left */
+}
+
+.info-list li:nth-child(2) .info-header {
+    justify-content: center; /* Centers text */
+}
+
+.info-list li:nth-child(3) .info-header {
+    justify-content: flex-end; /* Aligns text to the right */
+}
+
+@media (max-width: 355px) or (max-height: 355px) {
+    html, body {
+        font-size: 16px;
+    }
+
+    
+}
+
+@media (max-width: 1024px) {
+    .info-list li:nth-child(1) .info-header {
+        margin-left: 10%;
+    }
+    .info-list li:nth-child(3) .info-header {
+        margin-right: 10%;
+    }
+}
+
+
+
+
+
 
 .button-panel-wrap {
     display: block;
     width: 100%;
+    z-index: 10;
 }
+
+
 
 .button-panel {
-
+    list-style: none;
+    padding: 0;
+    margin: 10px auto;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    padding: 5px;
-    /* margin: 5px auto; */
-    /* padding: 10px 0 2px; */
-
-    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: space-between; /* Adjusts children with space between them */
+    width: 300px; /* Width limit as requested */
+    background-color: var(--transparen-panel-color);
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
     border-radius: 12px;
-
-    color: #fff;
-
-    max-width: 300px; /* Optional: Limit the max width */
-    margin: 10px auto; /* Centering the wrapper if a max-width is set */
 }
 
-/* Styling the button panel */
-.button-panel-1 {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    border-radius: 12px;
-    /* margin: 5px auto; */
-    max-width: 300px;
-    
+.button-panel li {
+    display: flex; /* Ensures flexibility of each list item */
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal alignment */
+    flex: 1; /* Equal flex distribution */
 }
 
-.game-button-wrap {
-    flex-grow: 1;
-    flex-basis: 0;
+.button-panel li:first-child {
+    justify-content: flex-start; /* Left alignment for the first button */
+    text-align: left;
+}
+
+.button-panel li:nth-child(2) {
+    justify-content: center; /* Center alignment for the middle button */
+    text-align: center;
+}
+
+.button-panel li:last-child {
+    justify-content: flex-end; /* Right alignment for the last button */
+    text-align: right;
 }
 
 .game-button {
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0;
-    padding: 0;
+    width: 100%; /* Ensures button fills the li element */
+    padding: 5px 5px 2px 5px;
     background-color: transparent;
     border: none;
-    
+    border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -145,18 +193,22 @@ canvas {
 }
 
 .game-button img {
-    width: 50px;
+    width: 40px; /* Image size */
     height: auto;
 }
 
 .game-button div {
-    padding: 0;
-    margin-top: 2px;
-    /* font-size: 14px; */
-    color: #fff;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #fff; /* Color for better visibility on dark background */
 }
 
-.modal {
+
+
+
+
+
+.modal-play {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     left: 0;
@@ -168,21 +220,102 @@ canvas {
     z-index: 1000; /* Sit on top */
 }
 
-.modal-content {
+.modal-play-content {
     position: absolute;
     top: 0;
-    left: 20%; /* 20% left margin */
-    right: 20%; /* 20% right margin */
+    
+    left: 50%; /* 20% left margin */
+
+    transform: translateX(-50%);
+
+    /*right: 10%; /* 20% right margin */
     bottom: 0;
-    background-color: rgba(33, 33, 33, 1); /* Light black with high opacity */
+    
+    background-color:rgba(0, 0, 0, 0.9); /* Light black with high opacity */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* Adds shadow for depth */
     color: gray;
-    padding: 20px;
-    width: auto; /* Automatically adjust the width based on the margins */
+    /* padding: 20px; */
+    width: 80%; /* Automatically adjust the width based on the margins */
     height: 100%; /* Stretch to full height */
     box-sizing: border-box; /* Include padding in the width calculation */
     overflow-y: auto; /* Allows scrolling inside the modal if content overflows */
     border: none; /* Removing the border */
+    /* max-width: 350px; */
     z-index: 1001;
+}
+
+.modal-play-content .header {
+    height: 40%;
+}
+
+@media (max-height: 600px) {
+    .modal-play-content .header {
+        height: 10%;
+    }
+}
+
+@media (orientation: landscape)  {
+    .modal-play-content {
+        
+        max-width: 350px;
+    }
+
+    
+}
+
+.modal-play-content .main {
+    
+    width: 100%; /* Set the width of the panel */
+    padding: 20px; /* Padding around the content */
+    
+    border-radius: 8px; /* Rounded corners */
+    margin: 20px auto; /* Center the panel horizontally */
+}
+
+.play-button {
+    list-style: none; /* Removes bullet points from the list */
+    padding: 0; /* Removes padding */
+    margin: 0; /* Removes margin */
+}
+
+.play-button li {
+    margin-bottom: 10px; /* Adds space between buttons */
+}
+
+.play-button li:last-child {
+    margin-top: 20px;
+    margin-bottom: 0; /* Removes margin from the last button */
+}
+
+.play-button button {
+    display: flex;
+    align-items: center; /* Vertically centers the contents within the button */
+    justify-content: center; /* Horizontally centers the contents within the button */
+    width: 100%;
+    padding: 10px;
+    background-color: #333; /* Dark grey background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.play-button button img {
+    margin-right: 10px; /* Adds space between the icon and the text */
+    width: 20px; /* Fixed width for icons */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.play-button button div {
+    text-align: center; /* Centers the text within the div */
+    display: block; /* Ensures the div behaves as a block-level element inside the flex container */
+    flex-grow: 1; /* Allows the div to expand and fill the available space, useful if you want the text centered irrespective of the icon */
+}
+
+.play-button button:hover {
+    background-color: #555; /* Changes background on hover */
 }
 
 .close-button {
@@ -201,96 +334,17 @@ canvas {
     cursor: pointer;
 }
 
-/* Animation for info block moving up */
-.move-up {
-    position: relative;
-    transition: transform 1s ease-in-out; /* Smooth transition over 1 second */
-    transform: translateY(-100px);
-}
-
-/* Animation for hiding button panel down */
-.hide-down {
-    position: relative;
-    transition: transform 1s ease-in-out; /* Smooth transition over 1 second */
-    transform: translateY(200px);
-}
-
-.button-panel-hidden {
-    visibility: hidden;      
-}
-
-.button-panel-visible {
-    visibility: visible;
-}
-
-
-
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .indicator {
-        /* font-size: 16px; */
-    }
-
-    .game-button img {
-        width: 40px;
-    }
-
-    .game-button div {
-        /* font-size: 16px; */
-    }
-}
-
-
-/* Orientation-specific adjustments */
-@media (orientation: portrait) {
-    .info-block, .button-panel {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    
-}
-
-@media (orientation: landscape) {
-    .info-block, .button-panel {
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    .button-panel {
-        padding: 10px 0;
-    }
-
-    .game-button {
-        /* margin: 0 10px; Adequate spacing in landscape */
-    }
-}
-
 @media (max-width: 600px) {
     .modal-content {
-        left: 20%; /* 20% margin for mobile devices */
-        right: 20%; /* Adjusted margin for mobile */
+        left: 15%; /* 20% margin for mobile devices */
+        right: 15%; /* Adjusted margin for mobile */
     }
 }
 
 /* Adjustments for tablets or intermediate screen sizes, if needed */
 @media (min-width: 601px) and (max-width: 800px) {
     .modal-content {
-        left: 20%; /* Maintaining a 20% margin from the edges */
-        right: 20%;
+        left: 10%; /* Maintaining a 20% margin from the edges */
+        right: 10%;
     }
 }
-
-.text {
-    font-size: 14px;
-}
-
-@viewport {
-    width: device-width;
-    zoom: 1.0;
-    min-zoom: 1.0;
-    max-zoom: 1.0;
-  }
