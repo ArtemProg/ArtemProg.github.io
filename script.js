@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalPlay = document.getElementById('modal-play');
     const openModalPlay = document.getElementById('btn-play');
 
-    const openModalButton = document.getElementById('btn-setting');
-    const closeModalButton = document.querySelector('.close-button');
-    const infoBlock = document.querySelector('.info-block');
-    const buttonPanel = document.querySelector('.button-panel');
+    // const openModalButton = document.getElementById('btn-setting');
+    // const closeModalButton = document.querySelector('.close-button');
+    // const infoBlock = document.querySelector('.info-block');
+    // const buttonPanel = document.querySelector('.button-panel');
 
     // Function to open the modal
     openModalPlay.onclick = function() {
@@ -25,23 +25,23 @@ document.addEventListener('DOMContentLoaded', function() {
         
     };
 
-    // Function to close the modal
-    closeModalButton.onclick = function() {
-        modalPlay.style.display = 'none';
-        //infoBlock.classList.remove('move-up');
+    // // Function to close the modal
+    // closeModalButton.onclick = function() {
+    //     modalPlay.style.display = 'none';
+    //     //infoBlock.classList.remove('move-up');
 
-        buttonPanel.classList.remove('button-panel-hidden');
-    };
+    //     buttonPanel.classList.remove('button-panel-hidden');
+    // };
 
-    // Click outside the modal content to also close the modal
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modalPlay.style.display = 'none';
-            //infoBlock.classList.remove('move-up');
+    // // Click outside the modal content to also close the modal
+    // window.onclick = function(event) {
+    //     if (event.target === modal) {
+    //         modalPlay.style.display = 'none';
+    //         //infoBlock.classList.remove('move-up');
 
-            buttonPanel.classList.remove('button-panel-hidden');
-        }
-    };
+    //         buttonPanel.classList.remove('button-panel-hidden');
+    //     }
+    // };
 
 
 
