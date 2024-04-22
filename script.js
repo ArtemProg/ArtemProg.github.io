@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    
-    
+document.addEventListener('DOMContentLoaded', function () {
+
+
     const elInfoBlock = document.getElementsByClassName('info-block')?.[0];
     const elInfoScore = document.getElementById('info-score');
     const elInfoTime = document.getElementById('info-time');
@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const elBtnUndo = document.getElementById('btn-undo');
 
-    
-    const modalPlay = document.getElementById('modal-play');
-    const openModalPlay = document.getElementById('btn-play');
+
+    initPlayModal();
+
 
     // const openModalButton = document.getElementById('btn-setting');
     // const closeModalButton = document.querySelector('.close-button');
@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // const buttonPanel = document.querySelector('.button-panel');
 
     // Function to open the modal
-    openModalPlay.onclick = function() {
-        modalPlay.style.display = 'block';
-        
+    // openModalPlay.onclick = function () {
+    //     modalPlay.style.display = 'block';
 
-        
-    };
+
+
+    // };
 
     // // Function to close the modal
     // closeModalButton.onclick = function() {
@@ -47,28 +47,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    document.addEventListener('touchstart', function(event) {
+    document.addEventListener('touchstart', function (event) {
         if (event.touches.length > 1) {
             event.preventDefault(); // Block multitouch gestures like pinch-to-zoom
         }
     }, { passive: false });
-    
-    document.addEventListener('wheel', function(event) {
+
+    document.addEventListener('wheel', function (event) {
         if (event.ctrlKey) {
             event.preventDefault(); // Block CTRL+wheel zoom
         }
     }, { passive: false });
-    
-    document.addEventListener('gesturestart', function(event) {
+
+    document.addEventListener('gesturestart', function (event) {
         event.preventDefault();  // Disable gesture events like pinch-to-zoom
     });
 
 
 
-    class Example extends Phaser.Scene
-    {
-        preload ()
-        {
+    class Example extends Phaser.Scene {
+        preload() {
             this.load.setBaseURL('https://labs.phaser.io');
 
             this.load.image('sky', 'assets/skies/space3.png');
@@ -76,8 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.load.image('red', 'assets/particles/red.png');
         }
 
-        create ()
-        {
+        create() {
             this.add.image(400, 300, 'sky');
 
             const particles = this.add.particles(0, 0, 'red', {
@@ -113,3 +110,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const game = new Phaser.Game(config);
 
 });
+
+function initPlayModal() {
+
+    const form = document.getElementById('modal-play');
+    const btnOpen = document.getElementById('btn-play');
+
+    const btnNewGame = document.getElementById('btn-new-game');
+    const btnReplay = document.getElementById('btn-replay');
+    const btnClose = document.getElementById('btn-close');
+
+    btnOpen.onclick = function () {
+        form.style.display = 'block';
+
+    };
+
+    btnClose.onclick = function () {
+        form.style.display = 'none';
+        
+    };
+
+    btnNewGame.onclick = function () {
+        
+        
+    };
+
+    btnReplay.onclick = function () {
+       
+        
+    };
+
+
+}
