@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const config = {
         type: Phaser.AUTO,
         parent: 'phaser-game',
-        width: 800,
-        height: 600,
+        width: 1024,
+        height: 1980,
         scene: Example,
         scale: {
             mode: Phaser.Scale.FIT,
