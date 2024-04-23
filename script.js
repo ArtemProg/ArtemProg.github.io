@@ -65,31 +65,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    class Example extends Phaser.Scene {
-        preload() {
-            this.load.setBaseURL('https://labs.phaser.io');
-
-            this.load.image('sky', 'assets/skies/space3.png');
-            this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-            this.load.image('red', 'assets/particles/red.png');
+    class Example extends Phaser.Scene
+    {
+        preload ()
+        {
+            this.load.atlas('cards', 'assets/atlas/cards.png', 'assets/atlas/cards.json');
         }
 
-        create() {
-            this.add.image(400, 300, 'sky');
+        create ()
+        {
+            //  Create a stack of random cards
 
-            const particles = this.add.particles(0, 0, 'red', {
-                speed: 100,
-                scale: { start: 1, end: 0 },
-                blendMode: 'ADD'
-            });
+            const frames = this.textures.get('cards').getFrameNames();
 
-            const logo = this.physics.add.image(400, 100, 'logo');
+            let x = 100;
+            let y = 100;
 
-            logo.setVelocity(100, 200);
-            logo.setBounce(1, 1);
-            logo.setCollideWorldBounds(true);
+            for (let i = 0; i < 64; i++)
+            {
+                this.add.image(x, y, 'cards', Phaser.Math.RND.pick(frames)).setInteractive();
 
-            particles.startFollow(logo);
+                x += 4;
+                y += 4;
+            }
+
+            this.input.on('gameobjectdown', function (pointer, gameObject)
+            {
+
+                //  Will contain the top-most Game Object (in the display list)
+                this.tweens.add({
+                    targets: gameObject,
+                    x: { value: 1100, duration: 1500, ease: 'Power2' },
+                    y: { value: 500, duration: 500, ease: 'Bounce.easeOut', delay: 150 }
+                });
+
+            }, this);
         }
     }
 
@@ -99,6 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
         width: 800,
         height: 600,
         scene: Example,
+        scale: {
+            mode: Phaser.Scale.FIT,
+            autoCenter: Phaser.Scale.CENTER_BOTH,
+        },
         physics: {
             default: 'arcade',
             arcade: {
@@ -113,32 +127,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function initPlayModal() {
 
-    const form = document.getElementById('modal-play');
+    const modalForm = document.getElementById('modal-play');
+    const modalContent = document.getElementById('modal-play-content');
     const btnOpen = document.getElementById('btn-play');
 
     const btnNewGame = document.getElementById('btn-new-game');
     const btnReplay = document.getElementById('btn-replay');
     const btnClose = document.getElementById('btn-close');
 
-    btnOpen.onclick = function () {
-        form.style.display = 'block';
+    const closeModal = () => { modalForm.style.display = 'none'; };
 
-    };
+    btnOpen.addEventListener('click', function() {
+        modalForm.style.display = 'block';
+    });
 
-    btnClose.onclick = function () {
-        form.style.display = 'none';
-        
-    };
+    btnClose.addEventListener('click', function() {
+        closeModal();
+    });
 
-    btnNewGame.onclick = function () {
-        
-        
-    };
+    modalForm.addEventListener('click', function(event) {
+        if (event.target === modalForm) {  // Checks if the modal background was directly clicked
+            closeModal();
+        }
+    });
 
-    btnReplay.onclick = function () {
-       
-        
-    };
+    modalContent.addEventListener('click', function(event) {
+        event.stopPropagation();  // Prevents click event from bubbling up to the modal background
+    });
 
+    btnNewGame.addEventListener('click', function() {
+        closeModal();
+    });
+
+    btnReplay.addEventListener('click', function() {
+        closeModal();
+    });
 
 }
